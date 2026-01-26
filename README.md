@@ -1,4 +1,4 @@
-# 🧠 JW Infotech – Multimodal RAG Capstone Project
+#Multimodal RAG Capstone Project
 
 This repository documents the **end‑to‑end implementation of a Multimodal Retrieval‑Augmented Generation (RAG) system**, developed as a final capstone project. The project is organized into **six progressive phases**, each building toward a production‑ready AI system capable of understanding and answering questions from text and images.
 
