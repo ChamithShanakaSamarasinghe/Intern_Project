@@ -1,128 +1,274 @@
-📄 Phase 3 – Document Processing (Multimodal RAG)
-📌 Overview
+# 🧠 JW Infotech – Multimodal RAG Capstone Project
 
-This phase focuses on document processing for a multimodal Retrieval-Augmented Generation (RAG) system. The objective is to extract structured information from technical manuals, including text, images, and metadata, and prepare them for downstream embedding and retrieval stages.
+This repository documents the **end‑to‑end implementation of a Multimodal Retrieval‑Augmented Generation (RAG) system**, developed as a final capstone project. The project is organized into **six progressive phases**, each building toward a production‑ready AI system capable of understanding and answering questions from text and images.
 
-The implementation follows a practical, code-first approach, ensuring real-world applicability rather than theoretical concepts.
+The approach is **practical, code‑first, and industry‑oriented**, focusing on real‑world implementation rather than theoretical concepts.
 
-🎯 Phase Objectives
+---
 
-Parse PDFs containing text and images
+## 📌 Phase 1 – Project Setup & Environment Configuration
 
-Chunk extracted text for efficient retrieval
+### 📄 Overview
 
-Maintain metadata to preserve document structure
+Phase 1 establishes the foundation for the Multimodal RAG system. This phase focuses on project structure, environment setup, dependency management, and validating that the development environment is ready for subsequent phases.
 
-Link images with their relevant text sections
+### 🎯 Phase Objectives
 
-Prepare clean, structured outputs for multimodal embedding
+* Create a clean, modular project structure
+* Set up Python virtual environment
+* Install required dependencies
+* Validate basic script execution
 
-📂 Project Structure
-PDF PARSING/
+### 📂 Project Structure
+
+```
+project-root/
 │
 ├── data/
-│   ├── manuals/              # Input PDF manuals
-│   ├── extracted_text/       # Raw extracted text
-│   ├── extracted_images/     # Images extracted from PDFs
-│   ├── chunks/               # Text chunks for retrieval
-│   └── metadata/             # Metadata and image-text links
-│
-├── pdf_parser.py             # PDF parsing (text + images)
-├── text_chunker.py           # Text chunking logic
-├── metadata_and_linking.py   # Metadata generation & image-text linking
+├── logs/
+├── rag_pipeline/
+├── api.py
+├── logger_config.py
+├── requirements.txt
 └── README.md
+```
 
-🔹 Phase 3 Tasks Breakdown
-1️⃣ PDF Parsing (Text + Images)
+### ▶️ How to Run Phase 1
 
-Extracts text and images from technical manuals
+```bash
+python --version
+pip install -r requirements.txt
+python -c "print('Environment Ready')"
+```
 
-Saves text and images separately for processing
+### 🚀 Outcome
 
-Supports real-world manuals with mixed content
+* Development environment successfully configured
+* Project structure ready for incremental development
 
-Output:
+---
 
-Extracted text files
+## 📌 Phase 2 – Text‑Only RAG Pipeline
 
-Extracted image files
+### 📄 Overview
 
-2️⃣ Text Chunking
+This phase implements a **basic Retrieval‑Augmented Generation pipeline** using text documents only. It validates the core RAG workflow before introducing multimodal data.
 
-Splits large text into manageable chunks
+### 🎯 Phase Objectives
 
-Improves retrieval accuracy in RAG systems
+* Load and preprocess text documents
+* Generate embeddings for text
+* Store embeddings in a vector database
+* Retrieve relevant chunks for a query
+* Generate answers using an LLM
 
-Preserves semantic meaning across chunks
+### 📂 Key Files
 
-Output:
+```
+rag_pipeline/
+├── text_loader.py
+├── text_chunker.py
+├── embeddings.py
+├── vector_store.py
+└── rag_text_only.py
+```
 
-Chunked text files stored per document
+### ▶️ How to Run Phase 2
 
-3️⃣ Metadata & Image–Text Linking
+```bash
+python rag_pipeline/rag_text_only.py
+```
 
-Generates structured metadata for text chunks
+### 🚀 Outcome
 
-Links images to relevant text using document-level association
+* Functional text‑only RAG pipeline
+* Validated retrieval + generation flow
 
-Maintains layout and contextual consistency
+---
 
-Output:
+## 📌 Phase 3 – Document Processing (Multimodal RAG)
 
-text_metadata.json
+### 📄 Overview
 
-image_text_links.json
+This phase focuses on **document processing for multimodal inputs**. Text, images, and metadata are extracted from technical manuals and prepared for downstream embedding and retrieval.
 
-▶️ How to Run the Phase 3 Pipeline
-Step 1: Place Manuals
-data/manuals/
+### 🎯 Phase Objectives
 
-Step 2: Run PDF Parsing
+* Parse PDFs containing text and images
+* Chunk extracted text
+* Preserve document metadata
+* Link images with relevant text sections
+
+### 📂 Project Structure
+
+```
+PDF_PARSING/
+│
+├── data/
+│   ├── manuals/
+│   ├── extracted_text/
+│   ├── extracted_images/
+│   ├── chunks/
+│   └── metadata/
+│
+├── pdf_parser.py
+├── text_chunker.py
+├── metadata_and_linking.py
+└── README.md
+```
+
+### ▶️ How to Run Phase 3
+
+```bash
 python pdf_parser.py
-
-Step 3: Run Text Chunking
 python text_chunker.py
-
-Step 4: Generate Metadata & Linking
 python metadata_and_linking.py
+```
 
-🧪 Practical Testing
+### 🚀 Outcome
 
-Tested using sample technical manuals containing both text and images
+* Fully structured multimodal documents
+* Text–image relationships preserved
 
-Verified correct extraction of text, images, and metadata
+---
 
-Confirmed proper linkage between visual and textual components
+## 📌 Phase 4 – Multimodal Embeddings
 
-🚀 Outcome
+### 📄 Overview
 
-By the end of Phase 3:
+This phase converts **text and images into a shared embedding space** using multimodal models, enabling cross‑modal retrieval.
 
-Documents are fully structured
+### 🎯 Phase Objectives
 
-Visual and textual information is preserved
+* Generate embeddings for text chunks
+* Generate embeddings for images
+* Align text and image representations
+* Store embeddings in a vector database
 
-Data is ready for multimodal embedding and retrieval (Phase 4)
+### 📂 Key Files
 
-🔜 Next Phase
+```
+rag_pipeline/
+├── multimodal_embeddings.py
+├── image_encoder.py
+├── text_encoder.py
+└── vector_store.py
+```
 
-Phase 4 – Multimodal Embeddings
+### ▶️ How to Run Phase 4
 
-CLIP/SigLIP text–image alignment
+```bash
+python rag_pipeline/multimodal_embeddings.py
+```
 
-Image caption generation
+### 🚀 Outcome
 
-Image–text similarity search
+* Text and images embedded in a unified vector space
+* Ready for multimodal retrieval
 
-🧠 Technologies Used
+---
 
-Python
+## 📌 Phase 5 – Multimodal RAG Pipeline
 
-PDF processing libraries
+### 📄 Overview
 
-JSON for structured metadata storage
+This phase integrates **retrieval and generation across both text and images**, completing the multimodal RAG logic.
 
-👤 Author
+### 🎯 Phase Objectives
 
-Chamith Shanaka Samarasinghe
+* Retrieve relevant text and images for a query
+* Combine multimodal context
+* Generate grounded responses using LLM
+
+### 📂 Key Files
+
+```
+rag_pipeline/
+├── retriever.py
+├── multimodal_rag.py
+└── answer_generator.py
+```
+
+### ▶️ How to Run Phase 5
+
+```bash
+python rag_pipeline/multimodal_rag.py
+```
+
+### 🚀 Outcome
+
+* End‑to‑end multimodal RAG pipeline
+* Accurate responses using text + images
+
+---
+
+## 📌 Phase 6 – API, Logging & Final Integration (Capstone)
+
+### 📄 Overview
+
+The final phase exposes the Multimodal RAG system via a **FastAPI service**, adds structured logging, and prepares the project for demonstration and evaluation.
+
+### 🎯 Phase Objectives
+
+* Build REST API using FastAPI
+* Implement structured logging
+* Add health checks
+* Enable real‑time query handling
+
+### 📂 Key Files
+
+```
+api.py
+logger_config.py
+rag_pipeline/
+└── answer_question.py
+```
+
+### ▶️ How to Run Phase 6
+
+```bash
+uvicorn api:app --reload
+```
+
+### 🔗 Available Endpoints
+
+* `POST /ask` – Query the Multimodal RAG system
+* `GET /health` – System health check
+* `GET /docs` – Interactive Swagger UI
+
+### 🚀 Outcome
+
+* Production‑ready Multimodal RAG API
+* Fully logged and testable system
+
+---
+
+## 🧪 Testing & Validation
+
+* Tested with real technical manuals
+* Verified text and image retrieval
+* Confirmed API responses and logging
+
+---
+
+## 🧠 Technologies Used
+
+* Python
+* FastAPI
+* Vector Databases (Milvus)
+* Multimodal Embedding Models
+* LLMs (via API)
+* PDF Processing Libraries
+
+---
+
+## 👤 Author
+
+**Chamith Shanaka Samarasinghe**
 AI/ML Intern – JW Infotech
+
+---
+
+## ✅ Final Note
+
+This project demonstrates a **complete, real‑world Multimodal RAG system**, from raw documents to an API‑based intelligent assistant, following industry‑standard practices and modular design.
